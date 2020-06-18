@@ -1,4 +1,4 @@
-package patterns.builder;
+package patterns.builder.fluent;
 
 public class FluentBuilderInheritanceWithRecursiveGenerics {}
 

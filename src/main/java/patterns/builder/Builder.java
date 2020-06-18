@@ -11,6 +11,7 @@ class Demo {
         System.out.println("<p>" + hello + "</p");
 
         String[] words = {"hello", "world"};
+
         StringBuilder sb = new StringBuilder();
         sb.append("<ul>\n");
         for (String word : words) {

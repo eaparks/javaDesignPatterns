@@ -1,24 +1,28 @@
-package patterns.builder;
+package patterns.builder.fluent;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class FluentBuilder {}
 
-class HtmlElement {
-  public String name, text;
-  public ArrayList<HtmlElement> elements = new ArrayList<HtmlElement>();
+class HtmlElement_Fluent {
+
+  public String name;
+  public String text;
+  public List<HtmlElement_Fluent> elements = new ArrayList<HtmlElement_Fluent>();
   private final int indentSize = 2;
   private final String newLine = System.lineSeparator();
 
-  public HtmlElement() {}
+  public HtmlElement_Fluent() {}
 
-  public HtmlElement(String name, String text) {
+  public HtmlElement_Fluent(String name, String text) {
     this.name = name;
     this.text = text;
   }
 
   private String toStringImpl(int indent) {
+
     StringBuilder sb = new StringBuilder();
     String i = String.join("", Collections.nCopies(indent * indentSize, " "));
     sb.append(String.format("%s<%s>%s", i, name, newLine));
@@ -28,7 +32,9 @@ class HtmlElement {
           .append(newLine);
     }
 
-    for (HtmlElement e : elements) sb.append(e.toStringImpl(indent + 1));
+    for (HtmlElement_Fluent e : elements) {
+    	sb.append(e.toStringImpl(indent + 1));
+	}
 
     sb.append(String.format("%s</%s>%s", i, name, newLine));
     return sb.toString();
@@ -40,11 +46,12 @@ class HtmlElement {
   }
 }
 
-class HtmlBuilder {
-  private String rootName;
-  private HtmlElement root = new HtmlElement();
+class HtmlBuilder_Fluent {
 
-  public HtmlBuilder(String rootName) {
+  private String rootName;
+  private HtmlElement_Fluent root = new HtmlElement_Fluent();
+
+  public HtmlBuilder_Fluent(String rootName) {
     this.rootName = rootName;
     root.name = rootName;
   }
@@ -55,21 +62,21 @@ class HtmlBuilder {
 //    root.elements.add(e);
 //  }
 
-  public HtmlBuilder addChild(String childName, String childText) {
-    HtmlElement e = new HtmlElement(childName, childText);
+  public HtmlBuilder_Fluent addChild(String childName, String childText) {
+    HtmlElement_Fluent e = new HtmlElement_Fluent(childName, childText);
     root.elements.add(e);
 
     return this;
   }
 
-  public HtmlBuilder addChildFluent(String childName, String childText) {
-    HtmlElement e = new HtmlElement(childName, childText);
+  public HtmlBuilder_Fluent addChildFluent(String childName, String childText) {
+    HtmlElement_Fluent e = new HtmlElement_Fluent(childName, childText);
     root.elements.add(e);
     return this;
   }
 
   public void clear() {
-    root = new HtmlElement();
+    root = new HtmlElement_Fluent();
     root.name = rootName;
   }
 
@@ -81,6 +88,7 @@ class HtmlBuilder {
 }
 
 class BuilderDemo {
+
   public static void main(String[] args) {
     // we want to build a simple HTML paragraph
     System.out.println("Testing");
@@ -101,12 +109,10 @@ class BuilderDemo {
     System.out.println(sb);
 
     // ordinary non-fluent builder
-    HtmlBuilder builder = new HtmlBuilder("ul");
+    HtmlBuilder_Fluent builder = new HtmlBuilder_Fluent("ul");
 //    builder.addChild("li", "hello");
 //    builder.addChild("li", "world");
 
-    builder.addChild("li", "hello").addChild("li", "world");
-    System.out.println(builder);
 
     // fluent builder
     builder.clear();

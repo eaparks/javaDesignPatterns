@@ -2,6 +2,7 @@ package patterns.builder;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class BuilderImproved {
 
@@ -9,13 +10,12 @@ public class BuilderImproved {
 
 class HtmlElement {
 
-    public String name, text;
-    public ArrayList<HtmlElement> elements = new ArrayList<>();
-    private final int indentSize = 2;
-    private final String newLine = System.lineSeparator();
+    public String name;
+    public String text;
+    public List<HtmlElement> elements = new ArrayList<>();
+	private final String newLine = System.lineSeparator();
 
     public HtmlElement() {
-
     }
 
     public HtmlElement(String name, String text) {
@@ -27,8 +27,10 @@ class HtmlElement {
     private String toStringImpl(int indent) {
 
         StringBuilder sb = new StringBuilder();
-        String i = String.join("", Collections.nCopies(indent * indentSize, " "));
+		int indentSize = 2;
+		String i = String.join("", Collections.nCopies(indent * indentSize, " "));
         sb.append(String.format("%s<%s>%s", i, name, newLine));
+
         if(text != null && !text.isEmpty()) {
             sb.append(String.join("", Collections.nCopies(indentSize * (indent + 1), " ")))
                     .append(text)
@@ -67,12 +69,6 @@ class HtmlBuilder {
         root.elements.add(e);
     }
 
-    public void clear() {
-
-        root = new HtmlElement();
-        root.name = rootName;
-    }
-
     @Override
     public String toString() {
 
@@ -93,7 +89,7 @@ class Demo2 {
         HtmlBuilder builder = new HtmlBuilder("ul");
         builder.addChild("li", "hello");
         builder.addChild("li", "world");
-        System.out.println(builder);
 
+        System.out.println(builder);
     }
 }
