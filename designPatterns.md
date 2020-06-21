@@ -1,14 +1,17 @@
-## Creational
+## Creational Patterns
     -Deal with the creation (construction) of objects
     -Explicit (constructor) vs. implicit (DI, refelection, etc.)
     -Wholesale (single statement) vs piecewise (step-by-step)
-#### Builder
-    -When piecewise object construction is complicated,
-    provide an API for doing it succinctly
-#### Factories
+#### Builder Patterns
+    When piecewise object construction is complicated,
+      provide an API for doing it succinctly
+#### Factory  Patterns
     Factory: A component responsible solely
              for the wholesale (not piecewise)
              creation of objects.
+
+             Object creation logic sometimes too complicated
+             Constructor sometimes not descriptive enough
 
     -- Abstract Factory
     -- Factory Method

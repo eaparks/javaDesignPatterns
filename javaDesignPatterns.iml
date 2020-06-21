@@ -13,5 +13,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="javatuples-1.2" level="project" />
+    <orderEntry type="library" name="reflections-0.9.9-rc1" level="project" />
+    <orderEntry type="library" name="guava-29.0-jre" level="project" />
+    <orderEntry type="library" name="javassist-3.18.1-GA" level="project" />
   </component>
 </module>
