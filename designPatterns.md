@@ -17,25 +17,34 @@
     -- Factory Method
 #### Prototype
     All about object copying.
-    
-    "When it's easier to copy an existing object 
+
+    "When it's easier to copy an existing object
     rather than fully initializing a new one."
-    
+
     Complicated objects (eg., cars, phones) aren't designed from scratch.
-    
+
     "A partially or fully initialized object that
     you copy (clone) and make use of."
-    
+
     1. Don't use Cloneable
             -only a marker interface
             -doesn't say anything about deep or shallow clone
             -doesn't say what should be in clone()
     2. Copy constructors
-        
+
     3. Copy thru serialization
+
+    A partially or fully initialized object that you copy (clone)
+    and make use of.
+    Cloneable doesn't work too well.
+    All about copying
+    Reiterate existing designs
+    Make copy of prototype and customize it
+        -requires 'deep copy'
 
 #### Singleton
 
+---------------------------------
 
 ## Behavioral
     -They're all different; no central theme
@@ -52,6 +61,7 @@
 #### Template Method
 #### Visitor
 
+---------------------------------
 
 ## Structural
     -Concerned with the structure (e.g., class members)
